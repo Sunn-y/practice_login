@@ -23,6 +23,8 @@
             <v-card-actions>
              <v-spacer></v-spacer>
              <v-btn color="primary" @click="login({ email, password})">Login</v-btn>
+              <!-- <v-btn color="primary" @click="getTest">getTest</v-btn>
+              <v-btn color="primary" @click="postTest">postTest</v-btn> -->
             </v-card-actions>
           </v-card>
           <br>
@@ -33,7 +35,11 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
+import {
+	mapState,
+	mapActions
+} from 'vuex';
+
 export default {
 	data: () => ({
 		drawer: null,
@@ -43,11 +49,35 @@ export default {
 	props: {
 		source: String
 	},
-   computed: {
-      ...mapState(['isLogin','isLoginError'])
-   },
+	computed: {
+		...mapState(['isLogin', 'isLoginError'])
+	},
 	methods: {
-      ...mapActions(['login']),
+		...mapActions(['login']),
+		// getTest() {
+		// 	axios.get('https://reqres.in/api/users?page=2')
+		// 		.then(res => {
+		// 			console.log(res);
+		// 		})
+		// 		.catch(err => {
+		// 			console.log(err);
+		// 		})
+		// 		.then(() => {
+		// 			console.log('test');
+		// 		});
+		// },
+		// postTest() {
+		// 	axios.post('https://reqres.in/api/register', {
+		// 			email: 'eve.holt@reqres.in',
+		// 			password: 'pistol'
+		// 		})
+		// 		.then(res => {
+		// 			console.log(res);
+		// 		})
+		// 		.catch(err => {
+		// 			console.log(err);
+		// 		});
+		// },
 	},
 }
 </script>
