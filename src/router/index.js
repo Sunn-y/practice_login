@@ -1,25 +1,51 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import store from "@/store";
 
 Vue.use(VueRouter);
+
+const rejectLogin = (to, from, next) => {
+   if(store.state.isLogin === true ){
+      alert('you already logged in.');
+      next('/');
+   }
+   else{
+      next();
+   }
+};
+
+const rejectMypage = (to, from, next) => {
+   if(store.state.isLogin  === false ){
+      alert('you must log in');
+      next('/login');
+   }
+   else{
+      next();
+   }
+};
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "home",
+    component: () =>
+      import(/* webpackChunkName: "home" */ "../views/Home.vue")
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: "/login",
+    name: "login",
+    beforeEnter: rejectLogin,
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
-];
+      import("../views/Login.vue")
+  },
+  {
+    path: "/mypage",
+    name: "mypage",
+    beforeEnter: rejectMypage,
+    component: () =>
+      import("../views/Mypage.vue")
+  },
+]
 
 const router = new VueRouter({
   mode: "history",
