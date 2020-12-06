@@ -47,9 +47,7 @@ export default new Vuex.Store({
 		}
 	},
 	actions: {
-		login({
-			dispatch
-		}, loginObj) {
+		login({dispatch}, loginObj) {
 			// login 정보 확인 -> 토큰 반환
 			axios.post('https://reqres.in/api/login', loginObj).then(res => {
 				console.log(res);
@@ -60,32 +58,23 @@ export default new Vuex.Store({
 			}).catch(() => {
 				alert('Check your email or password');
 			});
-		},
-		// let checkUser = null;
-		// state.allUsers.forEach((user, i) => {
-		// 	if (user.email === loginObj.email) checkUser = user;
-		// });
-		// if (checkUser === null || checkUser.password !== loginObj.password) {
-		// 	commit('loginError');
-		// } else {
-		// 	commit('loginSuccess', checkUser);
-		// 	//state.userInfo = loginObj;
-		// 	router.push({
-		// 		name: 'mypage'
-		// 	});
-		// }
-		// },
-		logout({
-			commit
-		}) {
-			commit('logout');
-			router.push({
-				name: 'home'
+			let checkUser = null;
+			state.allUsers.forEach((user, i) => {
+				if (user.email === loginObj.email) checkUser = user;
 			});
+			if (checkUser === null || checkUser.password !== loginObj.password) {
+				commit('loginError');
+			} else {
+				commit('loginSuccess', checkUser);
+			//state.userInfo = loginObj;
+				router.push({name: 'mypage'});
+			}
 		},
-		getMemberInfo({
-			commit
-		}) {
+		logout({commit}) {
+			commit('logout');
+			router.push({name: 'home'});
+		},
+		getMemberInfo({commit}) {
 			// 로컬에 저장된 토큰 가져오기
 			let token = localStorage.getItem('access_token');
 			let config = {
@@ -109,6 +98,6 @@ export default new Vuex.Store({
 					alert('Check your email or password');
 				})
 				.then(() => {});
-		},
+		}
 	}
 });

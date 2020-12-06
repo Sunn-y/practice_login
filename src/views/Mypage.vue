@@ -1,9 +1,9 @@
 <template lang="html">
    <v-layout row wrap align-center justify-center>
      <v-flex xs12 sm8 md4>
-       <v-card class="elevation-12">
-          Welcome! {{ userInfo.first_name }}
-      </v-card>
+      <v-card flat>
+			<div class="text-h3"> Welcome! {{ userInfo.first_name }}</div>
+		</v-card>
    </v-flex>
 </v-layout>
 </template>

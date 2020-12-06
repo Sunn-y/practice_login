@@ -1,6 +1,6 @@
 <template>
-<v-app id="inspire">
-	<v-navigation-drawer v-model="drawer" absolute bottom temporary>
+<v-app id="inspire" app>
+	<v-navigation-drawer v-model="drawer" app>
 		<v-list nav dense>
 			<v-list-item-group active-class="deep-purple--text text--accent-4">
 				<v-list-item router :to="{name:'home'}" exact>
