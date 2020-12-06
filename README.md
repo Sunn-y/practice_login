@@ -5,6 +5,9 @@
 npm install
 ```
 
+### View
+![login.png](https://github.com/Sunn-y/practice_login/blob/master/img/login.png)
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve
