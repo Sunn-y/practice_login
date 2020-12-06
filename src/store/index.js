@@ -81,7 +81,7 @@ export default new Vuex.Store({
 				hearders: {
 					"access-token": token
 				}
-			};
+				};
 			// 반환된 토큰을 다시 보냄 -> 토큰에 해당되는 정보를 넘겨줌
 			axios.get('https://reqres.in/api/users/2', config)
 				.then(response => {
@@ -98,6 +98,6 @@ export default new Vuex.Store({
 					alert('Check your email or password');
 				})
 				.then(() => {});
-		}
+		},
 	}
 });
